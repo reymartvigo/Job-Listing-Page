@@ -1,12 +1,20 @@
 import React from 'react'
 
 
-import logo1 from '../images/photosnap.svg'
 
-const Jobs = ({ id, company, logo, new: isNew, featured, position, role, level, postedAt, contract, location, languages, tools }) => {
+const Jobs = ({ openFiltered, id, company, logo, new: isNew, featured, position, role, level, postedAt, contract, location, languages, tools }) => {
+
+
+
+    const handleOpenFilter = (languages, tools) => {
+        openFiltered(languages, tools);
+    }
+
     return (
 
         <div className={`border-red sm:w-11/12 h-auto rounded-lg shadow-lg  ${featured ? 'sm:border-l-4 border-DesaturatedDarkCyan' : 'sm:border-none'}`}>
+
+
             <div className=" bg-white sm: flex sm: flex-col items-start sm: px-6 sm:py-6 gap-4 rounded-lg">
 
 
@@ -37,20 +45,23 @@ const Jobs = ({ id, company, logo, new: isNew, featured, position, role, level, 
                 </div>
 
                 <div className="sm:flex sm:flex-wrap gap-5 items-center text-DesaturatedDarkCyan font-semibold w-full">
-                    <span className=" bg-LightGrayishCyanFT px-3 py-2 rounded-md cursor-pointer">{role}</span>
-                    <span className=" bg-LightGrayishCyanFT px-3  py-2 rounded-md cursor-pointer">{level}</span>
+                    <span onClick={() => handleOpenFilter(role)} className=" bg-LightGrayishCyanFT px-3 py-2 rounded-md cursor-pointer">{role}</span>
+                    <span onClick={() => handleOpenFilter(level)} className=" bg-LightGrayishCyanFT px-3  py-2 rounded-md cursor-pointer">{level}</span>
+
                     {languages.map((language, index) => (
-                        <span key={index} className=" bg-LightGrayishCyanFT px-3 py-2 rounded-md cursor-pointer">
+                        <span key={index} onClick={() => handleOpenFilter(language)} className="languages bg-LightGrayishCyanFT px-3 py-2 rounded-md cursor-pointer">
                             {language}
                         </span>
                     ))}
                     {
                         tools.map((tool, index) => (
-                            <span key={index} className=" bg-LightGrayishCyanFT px-3 py-2  rounded-md cursor-pointer" >
+                            <span key={index} onClick={() => handleOpenFilter(tools)} className="tools bg-LightGrayishCyanFT px-3 py-2  rounded-md cursor-pointer" >
                                 {tool}
                             </span>
 
                         ))}
+
+
                 </div>
             </div>
 

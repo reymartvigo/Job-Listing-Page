@@ -7,9 +7,14 @@ import Jobs from './components/Jobs';
 import headerbg from './images/bg-header-mobile.svg'
 import headerbg2 from './images/bg-header-desktop.svg'
 
+
+import Filter from './components/Filter';
 function App() {
 
   const [data, setData] = useState([]);
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+
+  const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,9 +30,34 @@ function App() {
     fetchData()
   }, [])
 
+
+  const handleOpenFilter = (item) => {
+    if (!selectedItems.includes(item)) {
+      setSelectedItems(prevItems => [...prevItems, item]);
+      setIsFilterVisible(true);
+    }
+  }
+
+
+  const filteredJobs = data.filter((job) => {
+    if (selectedItems.length === 0) {
+      return true
+    }
+
+    return job.languages.some(language => selectedItems.includes(language)) ||
+      job.tools.some(tool => selectedItems.includes(tool))
+
+  })
+
+  const clearFilterJobs = () => {
+    setSelectedItems([]);
+    setIsFilterVisible(false);
+
+  }
+
   return (
     <>
-      <div className="sm:w-full sm:h-full sm:flex sm: flex-col sm:items-center border-2">
+      <div className="sm:w-full sm:h-full sm:flex sm: flex-col sm:items-center border-2 relative">
 
         <div className="w-full bg-DesaturatedDarkCyan">
           <img src={headerbg} alt="" aria-hidden="true" />
@@ -35,10 +65,18 @@ function App() {
 
         </div>
 
-        <div className="sm:w-full sm:flex sm:flex-col min-h-screen sm:items-center sm:py-16 bg-LightGrayishCyanBG gap-16" >
+        {isFilterVisible && (
+          <Filter selectedItems={selectedItems}
+            clearFilter={clearFilterJobs}
+          />
+        )
+
+        }
+
+        <div className="sm:w-full sm:flex sm:flex-col min-h-screen sm:items-center sm:py-28 bg-LightGrayishCyanBG gap-16" >
 
 
-          {data && data.map((job) => (
+          {filteredJobs.map((job) => (
             <Jobs
               key={job.id}
               id={job.id}
@@ -54,6 +92,8 @@ function App() {
               location={job.location}
               languages={job.languages}
               tools={job.tools}
+              openFiltered={handleOpenFilter}
+
             />
           ))}
 
