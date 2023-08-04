@@ -15,6 +15,8 @@ function App() {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
 
   const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedRole, setSelectedRole] = useState(null);
+  const [selectedLevel, setSelectedLevel] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,14 +42,17 @@ function App() {
 
 
   const filteredJobs = data.filter((job) => {
-    if (selectedItems.length === 0) {
-      return true
+    if (selectedItems.length === 0 && !selectedRole && !selectedLevel) {
+      return true;
     }
 
-    return job.languages.some(language => selectedItems.includes(language)) ||
-      job.tools.some(tool => selectedItems.includes(tool))
+    const languageMatch = selectedItems.some(item => job.languages.includes(item));
+    const toolMatch = selectedItems.some(item => job.tools.includes(item));
+    const roleMatch = !selectedRole || job.role === selectedRole;
+    const levelMatch = !selectedLevel || job.level === selectedLevel;
 
-  })
+    return languageMatch || toolMatch || roleMatch || levelMatch;
+  });
 
   const clearFilterJobs = () => {
     setSelectedItems([]);

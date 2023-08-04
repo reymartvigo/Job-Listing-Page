@@ -6,8 +6,8 @@ const Jobs = ({ openFiltered, id, company, logo, new: isNew, featured, position,
 
 
 
-    const handleOpenFilter = (languages, tools) => {
-        openFiltered(languages, tools);
+    const handleOpenFilter = (languages, tools, role, level) => {
+        openFiltered(languages, tools, role, level);
     }
 
     return (
