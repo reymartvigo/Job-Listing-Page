@@ -5,6 +5,7 @@ import Filter from './components/Filter';
 import Jobs from './components/Jobs';
 /*******  Components  **********/
 
+import JobsData from './data.json'
 
 /*******  Headers Images  **********/
 import headerbg from './images/bg-header-mobile.svg'
@@ -24,10 +25,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/src/data.json")
-        const jsonData = await response.json();
-        setData(jsonData)
-
+        setData(JobsData)
       } catch (err) {
         console.log('Error fetching data', err)
       }
