@@ -5,11 +5,11 @@ import Filter from './components/Filter';
 import Jobs from './components/Jobs';
 /*******  Components  **********/
 
-import JobsData from './data.json'
+import JobsData from '../public/data.json'
 
 /*******  Headers Images  **********/
-import headerbg from './images/bg-header-mobile.svg'
-import headerbg2 from './images/bg-header-desktop.svg'
+import headerbg from '../public/bg-header-mobile.svg'
+import headerbg2 from '../public/bg-header-desktop.svg'
 /*******  Headers Images  **********/
 
 
@@ -106,7 +106,7 @@ function App() {
         </div>
 
 
-        <div className="sm:w-full sm:flex sm:flex-col min-h-screen justify-start sm:items-center sm:py-28 bg-LightGrayishCyanBG gap-16 lg:gap-8" >
+        <div className="sm:w-full sm:flex sm:flex-col min-h-screen justify-start sm:items-center sm:py-28 bg-LightGrayishCyanBG sm:gap-16 lg:gap-10" >
 
           {isFilterVisible && (
 
@@ -123,8 +123,6 @@ function App() {
 
           }
           {filteredData.map((job) => (
-
-
 
             /*******  Jobs Component **********/
 

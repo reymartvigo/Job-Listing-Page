@@ -19,7 +19,7 @@ const Filter = ({ selectedItems, clearFilter, deleteFilter, }) => {
 
     return (
         <>
-            <div className=" sm:w-11/12 sm:px-5 sm:py-6 rounded-md bg-white shadow-xl sm:flex items-center justify-between -mt-40 lg:w-10/12 lg2:px-10">
+            <div className=" sm:w-11/12 sm:px-5 sm:py-6 rounded-md bg-white shadow-xl sm:flex items-center justify-between -mt-40 lg:w-10/12  lg2:px-10 ">
                 <div className="sm:flex gap-4 flex-wrap">
                     {uniqueFilteredItems.map((item, index) => (
                         <FilterItem key={index} item={item} handleDeleteFilter={handleDeleteFilter} />

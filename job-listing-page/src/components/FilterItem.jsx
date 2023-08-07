@@ -1,5 +1,5 @@
 import React from "react";
-import remove from '../images/icon-remove.svg'
+import remove from '../../public/icon-remove.svg'
 
 const FilterItem = ({ item, handleDeleteFilter }) => {
 
