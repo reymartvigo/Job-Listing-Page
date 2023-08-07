@@ -27,6 +27,10 @@ Users should be able to:
 
 ![Job filtering](https://github.com/reymartvigo/Job-Listing-Page/assets/111113305/49043dda-5027-4350-b77c-e152525b4bd6)
 
+### Links
+
+- Solution URL: https://www.frontendmentor.io/solutions/job-listing-w-filtering-reactjs-vite-tailwind-html-jLh4SixhiN
+- Live Site URL: https://job-listing-page-filter.netlify.app/
 
 ## My process
 
